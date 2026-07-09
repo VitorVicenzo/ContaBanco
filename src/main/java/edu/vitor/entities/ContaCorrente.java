@@ -8,12 +8,18 @@ public class ContaCorrente implements Conta {
     private String agencia;
     private String nomeCliente;
     private Float saldo;
+    private String tipoConta;
+    private Float limiteConta;
 
-    public ContaCorrente(Integer numero, String agencia, String nomeCliente) {
+    public ContaCorrente(Integer numero, String agencia, String nomeCliente, String tipoConta) {
         this.numero = numero;
         this.agencia = agencia;
         this.nomeCliente = nomeCliente;
+        this.tipoConta = tipoConta;
+    }
 
+    public String getTipoConta() {
+        return tipoConta;
     }
 
     public Integer getNumero() {
@@ -28,23 +34,35 @@ public class ContaCorrente implements Conta {
         return nomeCliente;
     }
 
+    public Float getLimiteConta() {
+        return limiteConta;
+    }
+
+    private void setLimiteConta(Float limiteConta) {
+        this.limiteConta = limiteConta;
+    }
+
     public Float getSaldo() {
         return saldo;
     }
 
+    private void setSaldo(Float saldo) {
+        this.saldo = saldo;
+    }
+
     @Override
     public void deposito(Float valorDeposito) {
-        saldo += valorDeposito;
+        setSaldo(saldo += valorDeposito);
     }
 
     @Override
     public void saque(Float valorSaque) {
-        saldo -= valorSaque;
+        setSaldo(saldo -= valorSaque);
     }
 
     @Override
     public void transferencia(Float valorTransferencia) {
-        saldo -= valorTransferencia;
+        setSaldo(saldo -= valorTransferencia);
     }
 
 }
