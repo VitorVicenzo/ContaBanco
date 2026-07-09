@@ -1,15 +1,15 @@
-package edu.vitor.entities;
+package edu.vitor.models.entities;
 
-import edu.vitor.interfaces.Conta;
+import edu.vitor.models.interfaces.Conta;
 
 public class ContaCorrente implements Conta {
 
     private Integer numero;
     private String agencia;
     private String nomeCliente;
-    private Float saldo;
+    private Double saldo = 0.0;
     private String tipoConta;
-    private Float limiteConta;
+    private Double limiteConta = 0.0;
 
     public ContaCorrente(Integer numero, String agencia, String nomeCliente, String tipoConta) {
         this.numero = numero;
@@ -34,24 +34,30 @@ public class ContaCorrente implements Conta {
         return nomeCliente;
     }
 
-    public Float getLimiteConta() {
+    public Double getLimiteConta() {
         return limiteConta;
     }
 
-    private void setLimiteConta(Float limiteConta) {
+    private void setLimiteConta(Double limiteConta) {
         this.limiteConta = limiteConta;
     }
 
-    public Float getSaldo() {
+    public Double getSaldo() {
         return saldo;
     }
 
-    private void setSaldo(Float saldo) {
+    private void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
 
     @Override
-    public void deposito(Float valorDeposito) {
+    public void deposito(Double valorDeposito) {
+        if (valorDeposito >= 1000.00 && getLimiteConta() < valorDeposito && getLimiteConta() != valorDeposito){
+            setLimiteConta(limiteConta += valorDeposito);
+            System.out.println("Parabéns pelo seu depósito!" + 
+            "Graças a esse depósito recheado," +
+            " o limite da sua conta aumentou! Agora seu limite é: " + getLimiteConta());
+        }
         setSaldo(saldo += valorDeposito);
     }
 

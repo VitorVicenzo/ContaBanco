@@ -1,13 +1,13 @@
-package edu.vitor.entities;
+package edu.vitor.models.entities;
 
-import edu.vitor.interfaces.Conta;
+import edu.vitor.models.interfaces.Conta;
 
 public class ContaPoupanca implements Conta {
 
     private Integer numero;
     private String agencia;
     private String nomeCliente;
-    private Float saldo;
+    private Double saldo = 0.0;
     private String tipoConta;
 
     public ContaPoupanca(Integer numero, String agencia, String nomeCliente, String tipoConta) {
@@ -33,16 +33,16 @@ public class ContaPoupanca implements Conta {
         return nomeCliente;
     }
 
-    public Float getSaldo() {
+    public Double getSaldo() {
         return saldo;
     }
 
-    private void setSaldo(Float saldo) {
+    private void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
 
     @Override
-    public void deposito(Float valorDeposito) {
+    public void deposito(Double valorDeposito) {
         setSaldo(saldo += valorDeposito);
     }
 

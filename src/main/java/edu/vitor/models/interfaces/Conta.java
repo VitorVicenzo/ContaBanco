@@ -1,8 +1,8 @@
-package edu.vitor.interfaces;
+package edu.vitor.models.interfaces;
 
 public interface Conta {
 
-    default void deposito(Float valorDeposito) {
+    default void deposito(Double valorDeposito) {
         deposito(valorDeposito);
     }
 
